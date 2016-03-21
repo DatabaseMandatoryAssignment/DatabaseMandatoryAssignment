@@ -8,7 +8,7 @@ namespace MandatoryAssignment.Models
     public partial class DataContextView : DbContext
     {
         public DataContextView()
-            : base("name=DataContextView1")
+            : base("name=DataContextView")
         {
         }
 
