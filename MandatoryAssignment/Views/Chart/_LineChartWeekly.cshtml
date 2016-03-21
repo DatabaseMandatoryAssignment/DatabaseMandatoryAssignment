@@ -1,0 +1,29 @@
+﻿@using System.Globalization
+@model MandatoryAssignment.Models.WeeklyStat
+<div class="row">
+    <div class="col-md-10">
+        <div id="graph"></div>
+    </div>
+    @Html.Partial("ChartMenu")
+</div>
+<script>
+    new Morris.Line({
+        element: 'graph',
+        data: [
+            { day: '@Model.MondayDate', value: @Model.Monday.Value.ToString(new CultureInfo("en-US")) },
+            { day: '@Model.TuesdayDate', value: @Model.Tuesday.Value.ToString(new CultureInfo("en-US")) },
+            { day: '@Model.WednesdayDate', value: @Model.Wednesday.Value.ToString(new CultureInfo("en-US")) },
+            { day: '@Model.ThursdayDate', value: @Model.Thursday.Value.ToString(new CultureInfo("en-US")) },
+            { day: '@Model.FridayDate', value: @Model.Friday.Value.ToString(new CultureInfo("en-US")) },
+            { day: '@Model.SaturdayDate', value: @Model.Saturday.Value.ToString(new CultureInfo("en-US")) },
+            { day: '@Model.SundayDate', value: @Model.Sunday.Value.ToString(new CultureInfo("en-US")) },
+        ],
+        xLabels: 'day',
+        ymin: 'auto',
+        xkey: 'day',
+        ykeys: ['value'],
+        labels: ['Value'],
+        xLabelAngle: 90,
+        resize: true
+    });
+</script>

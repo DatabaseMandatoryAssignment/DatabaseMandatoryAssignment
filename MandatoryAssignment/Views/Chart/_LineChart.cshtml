@@ -1,0 +1,33 @@
+﻿@using System.Globalization
+<div class="row">
+    <div class="col-md-10">
+        <div id="graph"></div>
+    </div>
+    @Html.Partial("ChartMenu")
+</div>
+<script>
+    new Morris.Line({
+        element: 'graph',
+        data: [
+            { month: '2015-01', value: @Model.January.ToString(new CultureInfo("en-US")) },
+            { month: '2015-02', value: @Model.February.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-03', value: @Model.March.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-04', value: @Model.April.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-05', value: @Model.May.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-06', value: @Model.June.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-07', value: @Model.July.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-08', value: @Model.August.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-09', value: @Model.September.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-10', value: @Model.October.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-11', value: @Model.November.ToString(new CultureInfo("en-US"))  },
+            { month: '2015-12', value: @Model.December.ToString(new CultureInfo("en-US"))  },
+        ],
+        xLabels: 'month',
+        ymin: 'auto',
+        xkey: 'month',
+        ykeys: ['value'],
+        labels: ['Value'],
+        xLabelAngle: 45,
+        resize: true
+    });
+</script>

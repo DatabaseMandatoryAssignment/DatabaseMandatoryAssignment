@@ -135,13 +135,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Ambient.cs" />
-    <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\AmbientView.cs" />
+    <Compile Include="Models\DataContextTable.cs" />
+    <Compile Include="Models\DataContextView.cs" />
     <Compile Include="Models\Enhed.cs" />
     <Compile Include="Models\Maalested.cs" />
     <Compile Include="Models\MonthlyStat.cs" />
     <Compile Include="Models\Opstilling.cs" />
     <Compile Include="Models\Stof.cs" />
     <Compile Include="Models\Udstyr.cs" />
+    <Compile Include="Models\WeeklyStat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +161,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -182,6 +187,13 @@
     <Content Include="Views\Chart\Index.cshtml" />
     <Content Include="Views\Chart\BarChart.cshtml" />
     <Content Include="Views\Chart\DonutChart.cshtml" />
+    <Content Include="Views\Chart\_LineChart.cshtml" />
+    <Content Include="Views\Chart\ChartMenu.cshtml" />
+    <Content Include="Views\Chart\WeeklyIndex.cshtml" />
+    <None Include="Views\Chart\_BarChart.cshtml" />
+    <None Include="Views\Chart\_DonutChart.cshtml" />
+    <Content Include="Views\Chart\_StatMenu.cshtml" />
+    <Content Include="Views\Chart\_LineChartWeekly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

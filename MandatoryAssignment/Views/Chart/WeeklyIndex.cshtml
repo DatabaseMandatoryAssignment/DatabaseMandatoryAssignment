@@ -1,17 +1,17 @@
-﻿@model MandatoryAssignment.Models.MonthlyStat
+﻿@model MandatoryAssignment.Models.WeeklyStat
 @{
     ViewBag.Title = "Line chart";
 }
 @Html.Partial("_StatMenu")
 <div id="chart">
-    @Html.Partial("_LineChart")
+    @Html.Partial("_LineChartWeekly")
 </div>
 @section Scripts
 {
     <script type="text/javascript">
         $(function() {
             setInterval(function () {
-                $('#chart').load('Chart/_LineChart').show();
+                $('#chart').load('Chart/_LineChartWeekly').show();
             },
             10000);
         });

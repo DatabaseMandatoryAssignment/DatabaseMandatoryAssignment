@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="col-md-10">
+        <div id="graph"></div>
+    </div>
+    @Html.Partial("ChartMenu")
+</div>
+<script>
+    new Morris.Donut({
+        element: 'graph',
+        data: [
+            { label: 'January', value: @Model.January },
+            { label: 'February', value: @Model.February },
+            { label: 'March', value: @Model.March },
+            { label: 'April', value: @Model.April },
+            { label: 'May', value: @Model.May },
+            { label: 'June', value: @Model.June },
+            { label: 'July', value: @Model.July },
+            { label: 'August', value: @Model.August },
+            { label: 'September', value: @Model.September },
+            { label: 'October', value: @Model.October },
+            { label: 'November', value: @Model.November },
+            { label: 'December', value: @Model.December },
+        ],
+        resize: true
+    });
+</script>

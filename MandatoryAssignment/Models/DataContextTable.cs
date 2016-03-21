@@ -5,10 +5,10 @@ namespace MandatoryAssignment.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class DataContext : DbContext
+    public partial class DataContextTable : DbContext
     {
-        public DataContext()
-            : base("name=DataContext")
+        public DataContextTable()
+            : base("name=DataContextTable")
         {
         }
 

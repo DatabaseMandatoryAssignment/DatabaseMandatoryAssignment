@@ -2,39 +2,17 @@
 @{
     ViewBag.Title = "Bar Chart";
 }
-<div class="row">
-    <div class="col-md-10">
-        <div id="graph"></div>
-    </div>
-    <div class="btn-group-vertical col-md-2" role="group">
-        @Html.ActionLink("Line chart", "Index", null, new { @class = "btn btn-default" })
-        @Html.ActionLink("Bar chart", "BarChart", null, new { @class = "btn btn-default" })
-        @Html.ActionLink("Donut chart", "DonutChart", null, new { @class = "btn btn-default" })
-    </div>
+<div id="chart">
+    @Html.Partial("_BarChart")
 </div>
-<script>
-    new Morris.Bar({
-        element: 'graph',
-        data: [
-            { month: '2015-01', value: @Model.January },
-            { month: '2015-02', value: @Model.February },
-            { month: '2015-03', value: @Model.March },
-            { month: '2015-04', value: @Model.April },
-            { month: '2015-05', value: @Model.May },
-            { month: '2015-06', value: @Model.June },
-            { month: '2015-07', value: @Model.July },
-            { month: '2015-08', value: @Model.August },
-            { month: '2015-09', value: @Model.September },
-            { month: '2015-10', value: @Model.October },
-            { month: '2015-11', value: @Model.November },
-            { month: '2015-12', value: @Model.December },
-        ],
-        xLabels: 'month',
-        ymin: 'auto 30000',
-        xkey: 'month',
-        ykeys: ['value'],
-        labels: ['Value'],
-        xLabelAngle: 45,
-        resize: true
-    });
-</script>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            setInterval(function () {
+                $('#chart').load('_BarChart').show();
+            },
+            10000);
+        });
+    </script>
+}
