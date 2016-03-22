@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.Globalization;
 namespace MandatoryAssignment.Models
 {
-    public class MonthlyStat
+    public class YearlyViewModel
     {
+        public List<string> Stof { get; set; }
+
         public double? January { get; set; }
         public double? February { get; set; }
         public double? March { get; set; }

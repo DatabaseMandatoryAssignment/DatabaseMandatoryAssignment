@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MandatoryAssignment.Models
 {
-    public class WeeklyStat
+    public class WeeklyViewModel
     {
         public string MondayDate { get; set; }
         public string TuesdayDate { get; set; }

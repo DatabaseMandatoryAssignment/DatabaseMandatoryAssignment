@@ -16,7 +16,7 @@ namespace MandatoryAssignment
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Chart", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Yearly", action = "LineChart", id = UrlParameter.Optional }
             );
         }
     }

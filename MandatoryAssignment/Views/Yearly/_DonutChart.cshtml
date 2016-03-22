@@ -1,0 +1,26 @@
+﻿@using System.Globalization
+<div class="row">
+    <div class="col-md-10">
+        <div id="graph"></div>
+    </div>
+</div>
+<script>
+    new Morris.Donut({
+        element: 'graph',
+        data: [
+            { label: 'January', value: @Model.January.ToString(new CultureInfo("en-US")) },
+            { label: 'February', value: @Model.February.ToString(new CultureInfo("en-US")) },
+            { label: 'March', value: @Model.March.ToString(new CultureInfo("en-US")) },
+            { label: 'April', value: @Model.April.ToString(new CultureInfo("en-US")) },
+            { label: 'May', value: @Model.May.ToString(new CultureInfo("en-US")) },
+            { label: 'June', value: @Model.June.ToString(new CultureInfo("en-US")) },
+            { label: 'July', value: @Model.July.ToString(new CultureInfo("en-US")) },
+            { label: 'August', value: @Model.August.ToString(new CultureInfo("en-US")) },
+            { label: 'September', value: @Model.September.ToString(new CultureInfo("en-US")) },
+            { label: 'October', value: @Model.October.ToString(new CultureInfo("en-US")) },
+            { label: 'November', value: @Model.November.ToString(new CultureInfo("en-US")) },
+            { label: 'December', value: @Model.December.ToString(new CultureInfo("en-US")) },
+        ],
+        resize: true
+    });
+</script>

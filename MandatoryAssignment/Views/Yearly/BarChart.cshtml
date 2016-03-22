@@ -1,0 +1,34 @@
+﻿@model MandatoryAssignment.Models.YearlyViewModel
+@{
+    ViewBag.Title = "Bar Chart";
+}
+@Html.Partial("_StatMenu")
+<div class="row btn-group-vertical col-md-2" role="group">
+    @Html.Partial("_ChartMenu")
+    @using (Html.BeginForm("BarChart", "Yearly"))
+    {
+        <div class="form-group">
+            @Html.DropDownList("stofNavn", new SelectList(ViewBag.Stof, "StofNavn"), "Select all", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.DropDownList("maalested", new SelectList(ViewBag.Maalested, "Maalested"), "Select all", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary btn-block" type="submit" value="Show selected">
+        </div>
+    }
+</div>
+<div id="chart">
+    @Html.Partial("_BarChart")
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            setInterval(function () {
+                $('#chart').load('_BarChart').show();
+            },
+            30000);
+        });
+    </script>
+}
