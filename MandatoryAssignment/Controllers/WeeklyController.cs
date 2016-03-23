@@ -91,21 +91,21 @@ namespace MandatoryAssignment.Controllers
             var result = firstMonday.AddDays(weekNum * 7 + dayOfWeek - 1);
             return result;
         }
-        private double? GetWeeksCount(DateTime startOfWeek, string stofnavn, string maalested)
+        private double? GetWeeksAverage(DateTime startOfWeek, string stofnavn, string maalested)
         {
             if (string.IsNullOrEmpty(stofnavn) && string.IsNullOrEmpty(maalested))
             {
-                return (from q in DataContextView.AmbientView where q.DatoMaerke == startOfWeek select q.Resultat).Average() ?? 0;
+                return (from a in DataContextView.AmbientView where a.DatoMaerke == startOfWeek select a.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(stofnavn))
             {
-                return (from q in DataContextView.AmbientView where q.DatoMaerke == startOfWeek && q.Maalested == maalested select q.Resultat).Average() ?? 0;
+                return (from a in DataContextView.AmbientView where a.DatoMaerke == startOfWeek && a.Maalested == maalested select a.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(maalested))
             {
-                return (from q in DataContextView.AmbientView where q.DatoMaerke == startOfWeek && q.StofNavn == stofnavn select q.Resultat).Average() ?? 0;
+                return (from a in DataContextView.AmbientView where a.DatoMaerke == startOfWeek && a.StofNavn == stofnavn select a.Resultat).Average() ?? 0;
             }
-            return (from q in DataContextTable.Ambient where q.DatoMaerke == startOfWeek && q.Stof.StofNavn == stofnavn && q.Maalested.Maalested1 == maalested select q.Resultat).Average() ?? 0;
+            return (from a in DataContextTable.Ambient where a.DatoMaerke == startOfWeek && a.Stof.StofNavn == stofnavn && a.Maalested.Maalested1 == maalested select a.Resultat).Average() ?? 0;
         }
         private void SetWeeks(WeeklyViewModel weeklyViewModel, int weekNumber, string stofnavn = null, string maalested = null)
         {
@@ -117,13 +117,13 @@ namespace MandatoryAssignment.Controllers
             weeklyViewModel.SaturdayDate = GetDateByWeek(weekNumber, 5).ToString("yyyy-MM-dd");
             weeklyViewModel.SundayDate = GetDateByWeek(weekNumber, 6).ToString("yyyy-MM-dd");
 
-            weeklyViewModel.Monday = GetWeeksCount(GetDateByWeek(weekNumber, 0), stofnavn, maalested);
-            weeklyViewModel.Tuesday = GetWeeksCount(GetDateByWeek(weekNumber, 1), stofnavn, maalested);
-            weeklyViewModel.Wednesday = GetWeeksCount(GetDateByWeek(weekNumber, 2), stofnavn, maalested);
-            weeklyViewModel.Thursday = GetWeeksCount(GetDateByWeek(weekNumber, 3), stofnavn, maalested);
-            weeklyViewModel.Friday = GetWeeksCount(GetDateByWeek(weekNumber, 4), stofnavn, maalested);
-            weeklyViewModel.Saturday = GetWeeksCount(GetDateByWeek(weekNumber, 5), stofnavn, maalested);
-            weeklyViewModel.Sunday = GetWeeksCount(GetDateByWeek(weekNumber, 6), stofnavn, maalested);
+            weeklyViewModel.Monday = GetWeeksAverage(GetDateByWeek(weekNumber, 0), stofnavn, maalested);
+            weeklyViewModel.Tuesday = GetWeeksAverage(GetDateByWeek(weekNumber, 1), stofnavn, maalested);
+            weeklyViewModel.Wednesday = GetWeeksAverage(GetDateByWeek(weekNumber, 2), stofnavn, maalested);
+            weeklyViewModel.Thursday = GetWeeksAverage(GetDateByWeek(weekNumber, 3), stofnavn, maalested);
+            weeklyViewModel.Friday = GetWeeksAverage(GetDateByWeek(weekNumber, 4), stofnavn, maalested);
+            weeklyViewModel.Saturday = GetWeeksAverage(GetDateByWeek(weekNumber, 5), stofnavn, maalested);
+            weeklyViewModel.Sunday = GetWeeksAverage(GetDateByWeek(weekNumber, 6), stofnavn, maalested);
         }
     }
 }

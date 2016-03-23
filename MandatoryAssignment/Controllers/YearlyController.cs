@@ -79,38 +79,38 @@ namespace MandatoryAssignment.Controllers
         private void ViewBagItems()
         {
             ViewBag.Stof = from s in DataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in DataContextTable.Maalested select s.Maalested1;
+            ViewBag.Maalested = from m in DataContextTable.Maalested select m.Maalested1;
         }
-        private double? GetMonthsCount(int month, string stofnavn, string maalested)
+        private double? GetMonthsAverage(int month, string stofnavn, string maalested)
         {
             if (string.IsNullOrEmpty(stofnavn) && string.IsNullOrEmpty(maalested))
             {
-                return (from q in DataContextView.AmbientView where q.DatoMaerke.Month == month select q.Resultat).Average() ?? 0;
+                return (from a in DataContextView.AmbientView where a.DatoMaerke.Month == month select a.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(stofnavn))
             {
-                return (from q in DataContextView.AmbientView where q.DatoMaerke.Month == month && q.Maalested == maalested select q.Resultat).Average() ?? 0;
+                return (from a in DataContextView.AmbientView where a.DatoMaerke.Month == month && a.Maalested == maalested select a.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(maalested))
             {
-                return (from q in DataContextView.AmbientView where q.DatoMaerke.Month == month && q.StofNavn == stofnavn select q.Resultat).Average() ?? 0;
+                return (from a in DataContextView.AmbientView where a.DatoMaerke.Month == month && a.StofNavn == stofnavn select a.Resultat).Average() ?? 0;
             }
-            return (from q in DataContextTable.Ambient where q.DatoMaerke.Month == month && q.Stof.StofNavn == stofnavn && q.Maalested.Maalested1 == maalested select q.Resultat).Average() ?? 0;
+            return (from a in DataContextTable.Ambient where a.DatoMaerke.Month == month && a.Stof.StofNavn == stofnavn && a.Maalested.Maalested1 == maalested select a.Resultat).Average() ?? 0;
         }
         private void SetMonths(YearlyViewModel yearlyViewModel, string stofnavn = null, string maalested = null)
         {
-            yearlyViewModel.January = GetMonthsCount(1, stofnavn, maalested);
-            yearlyViewModel.February = GetMonthsCount(2, stofnavn, maalested);
-            yearlyViewModel.March = GetMonthsCount(3, stofnavn, maalested);
-            yearlyViewModel.April = GetMonthsCount(4, stofnavn, maalested);
-            yearlyViewModel.May = GetMonthsCount(5, stofnavn, maalested);
-            yearlyViewModel.June = GetMonthsCount(6, stofnavn, maalested);
-            yearlyViewModel.July = GetMonthsCount(7, stofnavn, maalested);
-            yearlyViewModel.August = GetMonthsCount(8, stofnavn, maalested);
-            yearlyViewModel.September = GetMonthsCount(9, stofnavn, maalested);
-            yearlyViewModel.October = GetMonthsCount(10, stofnavn, maalested);
-            yearlyViewModel.November = GetMonthsCount(11, stofnavn, maalested);
-            yearlyViewModel.December = GetMonthsCount(12, stofnavn, maalested);
+            yearlyViewModel.January = GetMonthsAverage(1, stofnavn, maalested);
+            yearlyViewModel.February = GetMonthsAverage(2, stofnavn, maalested);
+            yearlyViewModel.March = GetMonthsAverage(3, stofnavn, maalested);
+            yearlyViewModel.April = GetMonthsAverage(4, stofnavn, maalested);
+            yearlyViewModel.May = GetMonthsAverage(5, stofnavn, maalested);
+            yearlyViewModel.June = GetMonthsAverage(6, stofnavn, maalested);
+            yearlyViewModel.July = GetMonthsAverage(7, stofnavn, maalested);
+            yearlyViewModel.August = GetMonthsAverage(8, stofnavn, maalested);
+            yearlyViewModel.September = GetMonthsAverage(9, stofnavn, maalested);
+            yearlyViewModel.October = GetMonthsAverage(10, stofnavn, maalested);
+            yearlyViewModel.November = GetMonthsAverage(11, stofnavn, maalested);
+            yearlyViewModel.December = GetMonthsAverage(12, stofnavn, maalested);
         }
     }
 }
