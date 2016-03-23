@@ -1,9 +1,6 @@
 ﻿@using System.Globalization
-<div class="row">
-    <div class="col-md-10">
-        <div id="graph"></div>
-    </div>
-</div>
+
+<div id="graph"></div>
 <script>
     new Morris.Line({
         element: 'graph',
@@ -25,8 +22,11 @@
         ymin: 'auto',
         xkey: 'month',
         ykeys: ['value'],
-        labels: ['Value'],
+        labels: ['Average'],
         xLabelAngle: 45,
+        pointFillColors: ['#f0ad4e'],
+        pointSize: 5,
+        hideHover: 'auto',
         resize: true
     });
 </script>

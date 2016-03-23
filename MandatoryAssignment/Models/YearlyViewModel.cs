@@ -7,8 +7,6 @@ namespace MandatoryAssignment.Models
 {
     public class YearlyViewModel
     {
-        public List<string> Stof { get; set; }
-
         public double? January { get; set; }
         public double? February { get; set; }
         public double? March { get; set; }
@@ -21,6 +19,5 @@ namespace MandatoryAssignment.Models
         public double? October { get; set; }
         public double? November { get; set; }
         public double? December { get; set; }
-
     }
 }

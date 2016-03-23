@@ -8,38 +8,71 @@ using MandatoryAssignment.Models;
 
 namespace MandatoryAssignment.Controllers
 {
-    public class WeeklyController : Controller
+    public class WeeklyController : BaseController, IChart
     {
-        private readonly DataContextTable _dataContextTable = new DataContextTable();
-        private readonly DataContextView _dataContextView = new DataContextView();
+        private readonly WeeklyViewModel _weeklyViewModel = new WeeklyViewModel();
+        // POST methods
         [HttpPost]
         public ActionResult LineChart(int weekNumber, string stofNavn, string maalested)
         {
-            var weeklyViewModel = new WeeklyViewModel();
+            ViewBagItems();
 
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
-
-            SetWeeks(weeklyViewModel, weekNumber, stofNavn, maalested);
-
-            return View(weeklyViewModel);
+            SetWeeks(_weeklyViewModel, weekNumber, stofNavn, maalested);
+            return View(_weeklyViewModel);
         }
+        // View methods
         public ActionResult LineChart()
         {
-            var weeklyViewModel = new WeeklyViewModel();
-
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
+            ViewBagItems();
 
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
 
             var currentWeek = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
             ViewBag.CurrentWeek = currentWeek.ToString();
-            SetWeeks(weeklyViewModel, currentWeek);
-            return View(weeklyViewModel);
+            SetWeeks(_weeklyViewModel, currentWeek);
+
+            return View(_weeklyViewModel);
         }
-        public DateTime GetDateByWeek(int weekNumber, int dayOfWeek)
+
+        public ActionResult BarChart()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ActionResult DonutChart()
+        {
+            throw new NotImplementedException();
+        }
+
+        // Partial view methods
+        public ActionResult _LineChart()
+        {
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+
+            var currentWeek = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            ViewBag.CurrentWeek = currentWeek.ToString();
+
+            SetWeeks(_weeklyViewModel, currentWeek);
+            return PartialView(_weeklyViewModel);
+        }
+
+        public ActionResult _BarChart()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ActionResult _DonutChart()
+        {
+            throw new NotImplementedException();
+        }
+        private void ViewBagItems()
+        {
+            ViewBag.Stof = from s in DataContextTable.Stof select s.StofNavn;
+            ViewBag.Maalested = from s in DataContextTable.Maalested select s.Maalested1;
+        }
+        private DateTime GetDateByWeek(int weekNumber, int dayOfWeek)
         {
             DateTime jan1 = new DateTime(2015, 1, 1);
             int daysOffset = DayOfWeek.Tuesday - jan1.DayOfWeek;
@@ -62,17 +95,17 @@ namespace MandatoryAssignment.Controllers
         {
             if (string.IsNullOrEmpty(stofnavn) && string.IsNullOrEmpty(maalested))
             {
-                return (from q in _dataContextView.AmbientView where q.DatoMaerke == startOfWeek select q.Resultat).Average() ?? 0;
+                return (from q in DataContextView.AmbientView where q.DatoMaerke == startOfWeek select q.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(stofnavn))
             {
-                return (from q in _dataContextView.AmbientView where q.DatoMaerke == startOfWeek && q.Maalested == maalested select q.Resultat).Average() ?? 0;
+                return (from q in DataContextView.AmbientView where q.DatoMaerke == startOfWeek && q.Maalested == maalested select q.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(maalested))
             {
-                return (from q in _dataContextView.AmbientView where q.DatoMaerke == startOfWeek && q.StofNavn == stofnavn select q.Resultat).Average() ?? 0;
+                return (from q in DataContextView.AmbientView where q.DatoMaerke == startOfWeek && q.StofNavn == stofnavn select q.Resultat).Average() ?? 0;
             }
-            return (from q in _dataContextTable.Ambient where q.DatoMaerke == startOfWeek && q.Stof.StofNavn == stofnavn && q.Maalested.Maalested1 == maalested select q.Resultat).Average() ?? 0;
+            return (from q in DataContextTable.Ambient where q.DatoMaerke == startOfWeek && q.Stof.StofNavn == stofnavn && q.Maalested.Maalested1 == maalested select q.Resultat).Average() ?? 0;
         }
         private void SetWeeks(WeeklyViewModel weeklyViewModel, int weekNumber, string stofnavn = null, string maalested = null)
         {

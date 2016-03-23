@@ -8,115 +8,95 @@ using MandatoryAssignment.Models;
 
 namespace MandatoryAssignment.Controllers
 {
-    public class YearlyController : Controller
+    public class YearlyController : BaseController, IChart
     {
-        private readonly DataContextTable _dataContextTable = new DataContextTable();
-        private readonly DataContextView _dataContextView = new DataContextView();
+        private readonly YearlyViewModel _yearlyViewModel = new YearlyViewModel();
+        // POST methods
         [HttpPost]
         public ActionResult LineChart(string stofNavn, string maalested)
         {
-            var yearlyViewModel = new YearlyViewModel();
+            ViewBagItems();
 
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
-
-            SetMonths(yearlyViewModel, stofNavn, maalested);
-
-            return View(yearlyViewModel);
+            SetMonths(_yearlyViewModel, stofNavn, maalested);
+            return View(_yearlyViewModel);
         }
         [HttpPost]
         public ActionResult BarChart(string stofNavn, string maalested)
         {
-            var yearlyViewModel = new YearlyViewModel();
+            ViewBagItems();
 
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
-
-            SetMonths(yearlyViewModel, stofNavn, maalested);
-
-            return View(yearlyViewModel);
+            SetMonths(_yearlyViewModel, stofNavn, maalested);
+            return View(_yearlyViewModel);
         }
         [HttpPost]
         public ActionResult DonutChart(string stofNavn, string maalested)
         {
-            var yearlyViewModel = new YearlyViewModel();
+            ViewBagItems();
 
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
-
-            SetMonths(yearlyViewModel, stofNavn, maalested);
-
-            return View(yearlyViewModel);
+            SetMonths(_yearlyViewModel, stofNavn, maalested);
+            return View(_yearlyViewModel);
         }
+        // View methods
         public ActionResult LineChart()
         {
-            var yearlyViewModel = new YearlyViewModel();
+            ViewBagItems();
 
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
-
-            SetMonths(yearlyViewModel);
-            return View(yearlyViewModel);
-        }
-        
-        public ActionResult _LineChart()
-        {
-            var yearlyViewModel = new YearlyViewModel();
-
-            SetMonths(yearlyViewModel);
-            return PartialView(yearlyViewModel);
+            SetMonths(_yearlyViewModel);
+            return View(_yearlyViewModel);
         }
         public ActionResult BarChart()
         {
-            var yearlyViewModel = new YearlyViewModel();
+            ViewBagItems();
 
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
-            
-            SetMonths(yearlyViewModel);
-            return View(yearlyViewModel);
-        }
-        public ActionResult _BarChart()
-        {
-            var yearlyViewModel = new YearlyViewModel();
-
-            SetMonths(yearlyViewModel);
-            return PartialView(yearlyViewModel);
+            SetMonths(_yearlyViewModel);
+            return View(_yearlyViewModel);
         }
         public ActionResult DonutChart()
         {
-            var yearlyViewModel = new YearlyViewModel();
+            ViewBagItems();
 
-            ViewBag.Stof = from s in _dataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from s in _dataContextTable.Maalested select s.Maalested1;
-            
-            SetMonths(yearlyViewModel);
-            return View(yearlyViewModel);
+            SetMonths(_yearlyViewModel);
+            return View(_yearlyViewModel);
         }
+        // Partial view methods
+        public ActionResult _LineChart()
+        {
+            SetMonths(_yearlyViewModel);
+            return PartialView(_yearlyViewModel);
+        }
+
+        public ActionResult _BarChart()
+        {
+            SetMonths(_yearlyViewModel);
+            return PartialView(_yearlyViewModel);
+        }
+
         public ActionResult _DonutChart()
         {
-            var yearlyViewModel = new YearlyViewModel();
-
-            SetMonths(yearlyViewModel);
-            return PartialView(yearlyViewModel);
+            SetMonths(_yearlyViewModel);
+            return PartialView(_yearlyViewModel);
+        }
+        private void ViewBagItems()
+        {
+            ViewBag.Stof = from s in DataContextTable.Stof select s.StofNavn;
+            ViewBag.Maalested = from s in DataContextTable.Maalested select s.Maalested1;
         }
         private double? GetMonthsCount(int month, string stofnavn, string maalested)
         {
             if (string.IsNullOrEmpty(stofnavn) && string.IsNullOrEmpty(maalested))
             {
-                return (from q in _dataContextView.AmbientView where q.DatoMaerke.Month == month select q.Resultat).Average() ?? 0;
+                return (from q in DataContextView.AmbientView where q.DatoMaerke.Month == month select q.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(stofnavn))
             {
-                return (from q in _dataContextView.AmbientView where q.DatoMaerke.Month == month && q.Maalested == maalested select q.Resultat).Average() ?? 0;
+                return (from q in DataContextView.AmbientView where q.DatoMaerke.Month == month && q.Maalested == maalested select q.Resultat).Average() ?? 0;
             }
             if (string.IsNullOrEmpty(maalested))
             {
-                return (from q in _dataContextView.AmbientView where q.DatoMaerke.Month == month && q.StofNavn == stofnavn select q.Resultat).Average() ?? 0;
+                return (from q in DataContextView.AmbientView where q.DatoMaerke.Month == month && q.StofNavn == stofnavn select q.Resultat).Average() ?? 0;
             }
-            return (from q in _dataContextTable.Ambient where q.DatoMaerke.Month == month && q.Stof.StofNavn == stofnavn && q.Maalested.Maalested1 == maalested select q.Resultat).Average() ?? 0;
+            return (from q in DataContextTable.Ambient where q.DatoMaerke.Month == month && q.Stof.StofNavn == stofnavn && q.Maalested.Maalested1 == maalested select q.Resultat).Average() ?? 0;
         }
-
         private void SetMonths(YearlyViewModel yearlyViewModel, string stofnavn = null, string maalested = null)
         {
             yearlyViewModel.January = GetMonthsCount(1, stofnavn, maalested);

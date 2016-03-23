@@ -130,6 +130,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HourlyController.cs" />
     <Compile Include="Controllers\WeeklyController.cs" />
     <Compile Include="Controllers\YearlyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -137,9 +138,12 @@
     </Compile>
     <Compile Include="Models\Ambient.cs" />
     <Compile Include="Models\AmbientView.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Models\DataContextTable.cs" />
     <Compile Include="Models\DataContextView.cs" />
     <Compile Include="Models\Enhed.cs" />
+    <Compile Include="Models\HourlyViewModel.cs" />
+    <Compile Include="Models\IChart.cs" />
     <Compile Include="Models\Maalested.cs" />
     <Compile Include="Models\YearlyViewModel.cs" />
     <Compile Include="Models\Opstilling.cs" />
@@ -191,6 +195,7 @@
     <Content Include="Views\Yearly\_LineChart.cshtml" />
     <Content Include="Views\Shared\_ChartMenu.cshtml" />
     <Content Include="Views\Weekly\LineChart.cshtml" />
+    <None Include="Views\Hourly\LineChart.cshtml" />
     <None Include="Views\Yearly\_BarChart.cshtml" />
     <None Include="Views\Yearly\_DonutChart.cshtml" />
     <Content Include="Views\Shared\_StatMenu.cshtml" />
