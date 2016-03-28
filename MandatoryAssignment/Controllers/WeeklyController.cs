@@ -20,6 +20,22 @@ namespace MandatoryAssignment.Controllers
             SetWeeks(_weeklyViewModel, weekNumber, stofNavn, maalested);
             return View(_weeklyViewModel);
         }
+        [HttpPost]
+        public ActionResult BarChart(int weekNumber, string stofNavn, string maalested)
+        {
+            ViewBagItems();
+
+            SetWeeks(_weeklyViewModel, weekNumber, stofNavn, maalested);
+            return View(_weeklyViewModel);
+        }
+        [HttpPost]
+        public ActionResult DonutChart(int weekNumber, string stofNavn, string maalested)
+        {
+            ViewBagItems();
+
+            SetWeeks(_weeklyViewModel, weekNumber, stofNavn, maalested);
+            return View(_weeklyViewModel);
+        }
         // View methods
         public ActionResult LineChart()
         {
@@ -37,12 +53,30 @@ namespace MandatoryAssignment.Controllers
 
         public ActionResult BarChart()
         {
-            throw new NotImplementedException();
+            ViewBagItems();
+
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+
+            var currentWeek = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            ViewBag.CurrentWeek = currentWeek.ToString();
+            SetWeeks(_weeklyViewModel, currentWeek);
+
+            return View(_weeklyViewModel);
         }
 
         public ActionResult DonutChart()
         {
-            throw new NotImplementedException();
+            ViewBagItems();
+
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+
+            var currentWeek = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            ViewBag.CurrentWeek = currentWeek.ToString();
+            SetWeeks(_weeklyViewModel, currentWeek);
+
+            return View(_weeklyViewModel);
         }
 
         // Partial view methods
@@ -60,12 +94,26 @@ namespace MandatoryAssignment.Controllers
 
         public ActionResult _BarChart()
         {
-            throw new NotImplementedException();
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+
+            var currentWeek = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            ViewBag.CurrentWeek = currentWeek.ToString();
+
+            SetWeeks(_weeklyViewModel, currentWeek);
+            return PartialView(_weeklyViewModel);
         }
 
         public ActionResult _DonutChart()
         {
-            throw new NotImplementedException();
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+
+            var currentWeek = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            ViewBag.CurrentWeek = currentWeek.ToString();
+
+            SetWeeks(_weeklyViewModel, currentWeek);
+            return PartialView(_weeklyViewModel);
         }
         private void ViewBagItems()
         {

@@ -195,7 +195,16 @@
     <Content Include="Views\Yearly\_LineChart.cshtml" />
     <Content Include="Views\Shared\_ChartMenu.cshtml" />
     <Content Include="Views\Weekly\LineChart.cshtml" />
+    <Content Include="Views\Hourly\BarChart.cshtml" />
+    <Content Include="Views\Hourly\DonutChart.cshtml" />
     <None Include="Views\Hourly\LineChart.cshtml" />
+    <Content Include="Views\Weekly\BarChart.cshtml" />
+    <Content Include="Views\Weekly\_BarChart.cshtml" />
+    <Content Include="Views\Weekly\DonutChart.cshtml" />
+    <Content Include="Views\Weekly\_DonutChart.cshtml" />
+    <Content Include="Views\Hourly\_LineChart.cshtml" />
+    <Content Include="Views\Hourly\_BarChart.cshtml" />
+    <Content Include="Views\Hourly\_DonutChart.cshtml" />
     <None Include="Views\Yearly\_BarChart.cshtml" />
     <None Include="Views\Yearly\_DonutChart.cshtml" />
     <Content Include="Views\Shared\_StatMenu.cshtml" />

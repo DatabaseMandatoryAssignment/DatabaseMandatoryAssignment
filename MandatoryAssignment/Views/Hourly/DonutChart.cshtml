@@ -1,15 +1,15 @@
 ﻿@model MandatoryAssignment.Models.HourlyViewModel
 @{
-    ViewBag.Title = "Hourly | Line chart";
+    ViewBag.Title = "Hourly | Donut chart";
 }
 @Html.Partial("_StatMenu")
 <div class="row">
     <div class="col-md-10" id="chart">
-        @Html.Partial("_LineChart")
+        @Html.Partial("_DonutChart")
     </div>
     <div class="btn-group-vertical col-md-2" role="group">
         @Html.Partial("_ChartMenu") 
-        @using (Html.BeginForm("LineChart", "Hourly"))
+        @using (Html.BeginForm("DonutChart", "Hourly"))
         {
             <div class="form-group">
                 @Html.DropDownList("stofNavn", new SelectList(ViewBag.Stof, "StofNavn"), "Select all", new { @class = "form-control" })
@@ -31,7 +31,7 @@
     <script type="text/javascript">
         $(function() {
             setInterval(function () {
-                $('#chart').load('Hourly/_LineChart').show();
+                $('#chart').load('Hourly/_DonutChart').show();
             },
             30000);
         });

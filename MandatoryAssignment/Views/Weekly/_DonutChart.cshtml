@@ -1,0 +1,18 @@
+﻿@using System.Globalization
+@model MandatoryAssignment.Models.WeeklyViewModel
+<div id="graph"></div>
+<script>
+    new Morris.Donut({
+        element: 'graph',
+        data: [
+            { label: '@Model.MondayDate', value: @Model.Monday.Value.ToString(new CultureInfo("en-US")) },
+            { label: '@Model.TuesdayDate', value: @Model.Tuesday.Value.ToString(new CultureInfo("en-US")) },
+            { label: '@Model.WednesdayDate', value: @Model.Wednesday.Value.ToString(new CultureInfo("en-US")) },
+            { label: '@Model.ThursdayDate', value: @Model.Thursday.Value.ToString(new CultureInfo("en-US")) },
+            { label: '@Model.FridayDate', value: @Model.Friday.Value.ToString(new CultureInfo("en-US")) },
+            { label: '@Model.SaturdayDate', value: @Model.Saturday.Value.ToString(new CultureInfo("en-US")) },
+            { label: '@Model.SundayDate', value: @Model.Sunday.Value.ToString(new CultureInfo("en-US")) },
+        ],
+        resize: true
+    });
+</script>

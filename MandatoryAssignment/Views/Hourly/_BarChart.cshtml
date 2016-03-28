@@ -1,0 +1,45 @@
+﻿@using System.Globalization
+@model MandatoryAssignment.Models.HourlyViewModel
+<div id="graph"></div>
+<script>
+    new Morris.Bar({
+        element: 'graph',
+        data: [
+            { hour: '00:00', value: @Model.Hour00.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '01:00', value: @Model.Hour01.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '02:00', value: @Model.Hour02.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '03:00', value: @Model.Hour03.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '04:00', value: @Model.Hour04.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '05:00', value: @Model.Hour05.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '06:00', value: @Model.Hour06.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '07:00', value: @Model.Hour07.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '08:00', value: @Model.Hour08.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '09:00', value: @Model.Hour09.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '10:00', value: @Model.Hour10.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '11:00', value: @Model.Hour11.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '12:00', value: @Model.Hour12.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '13:00', value: @Model.Hour13.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '14:00', value: @Model.Hour14.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '15:00', value: @Model.Hour15.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '16:00', value: @Model.Hour16.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '17:00', value: @Model.Hour17.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '18:00', value: @Model.Hour18.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '19:00', value: @Model.Hour19.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '20:00', value: @Model.Hour20.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '21:00', value: @Model.Hour21.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '22:00', value: @Model.Hour22.Value.ToString(new CultureInfo("en-US")) },
+            { hour: '23:00', value: @Model.Hour23.Value.ToString(new CultureInfo("en-US")) },
+        ],
+        xLabels: 'hour',
+        ymin: 'auto',
+        xkey: 'hour',
+        ykeys: ['value'],
+        labels: ['Average'],
+        xLabelAngle: 45,
+        pointFillColors: ['#f0ad4e'],
+        pointSize: 5,
+        hideHover: 'auto',
+        parseTime: false,
+        resize: true
+    });
+</script>
