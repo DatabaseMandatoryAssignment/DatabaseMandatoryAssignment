@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using XmlExport.Models;
 
 namespace XmlExport
@@ -13,9 +15,13 @@ namespace XmlExport
     {
         static void Main(string[] args)
         {
+            var client = new MongoClient();
+            var db = client.GetDatabase("DatabaseMandatoryDatabase");
+            var ambient = db.GetCollection<BsonDocument>("Ambient");
+
             XmlDocument document = new XmlDocument();
             // //OpstillingId[not(. = following::OpstillingId/.)]
-            const string Path = @"C:\Users\SanneWinther\Desktop\datamatiker4.semester\database\MandatoryAssignment\XmlExport\";
+            const string Path = @"C:\Users\SanneWinther\Desktop\akademi\Data\";
             document.Load(Path + "Ambient.xml");
             XmlNode root = document.DocumentElement;
 
@@ -26,7 +32,22 @@ namespace XmlExport
             stopwatch.Start();
             foreach (XmlNode item in nodes)
             {
-                using (DataContext dataContext = new DataContext())
+                var bsonDocument = new BsonDocument
+                {
+                    {"DatoMaerke", Convert.ToDateTime(item.SelectSingleNode("DatoMaerke").InnerText)},
+                    {"MaaleSted", item.SelectSingleNode("Maalested").InnerText},
+                    {"Opstilling", item.SelectSingleNode("OpstillingNavn").InnerText},
+                    {"Stof", item.SelectSingleNode("StofNavn").InnerText},
+                    {"Resultat", Convert.ToDouble(item.SelectSingleNode("Resultat")?.InnerText)},
+                    {"Enhed", item.SelectSingleNode("EnhedNavn").InnerText},
+                    {"Udstyr", item.SelectSingleNode("UdstyrNavn").InnerText},
+                    {"Easting32", Convert.ToInt32(item.SelectSingleNode("Easting_32").InnerText)},
+                    {"Northing32", Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)},
+                };
+                ambient.InsertOne(bsonDocument);
+
+
+                /*using (DataContext dataContext = new DataContext())
                 {
                     dataContext.Ambient.Add(new Ambient()
                     {
@@ -41,7 +62,8 @@ namespace XmlExport
                         Northing32 = Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)
                     });
                     dataContext.SaveChanges();
-                }
+                }*/
+
             }
             stopwatch.Stop();
             Console.WriteLine("--- Done! --- (" + stopwatch.Elapsed.ToString("g") + ")");
