@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MandatoryAssignment2.Models.Ambient>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Enhed.EnhedNavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Maalested.Maalested1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opstilling.OpstillingNavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stof.StofNavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Udstyr.UdstyrNavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatoMaerke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resultat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Easting32)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Northing32)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enhed.EnhedNavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maalested.Maalested1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opstilling.OpstillingNavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stof.StofNavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Udstyr.UdstyrNavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatoMaerke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resultat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Easting32)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Northing32)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AmbientId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AmbientId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AmbientId })
+        </td>
+    </tr>
+}
+
+</table>

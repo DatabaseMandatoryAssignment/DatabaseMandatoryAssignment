@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AmbientsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HourlyController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -299,6 +300,11 @@
     <Content Include="Views\Yearly\_BarChart.cshtml" />
     <Content Include="Views\Yearly\_DonutChart.cshtml" />
     <Content Include="Views\Yearly\_LineChart.cshtml" />
+    <Content Include="Views\Ambients\Create.cshtml" />
+    <Content Include="Views\Ambients\Delete.cshtml" />
+    <Content Include="Views\Ambients\Details.cshtml" />
+    <Content Include="Views\Ambients\Edit.cshtml" />
+    <Content Include="Views\Ambients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

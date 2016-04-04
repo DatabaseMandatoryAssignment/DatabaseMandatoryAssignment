@@ -1,0 +1,91 @@
+﻿@model MandatoryAssignment2.Models.Ambient
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ambient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Enhed.EnhedNavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enhed.EnhedNavn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maalested.Maalested1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maalested.Maalested1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opstilling.OpstillingNavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opstilling.OpstillingNavn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stof.StofNavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stof.StofNavn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Udstyr.UdstyrNavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Udstyr.UdstyrNavn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatoMaerke)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatoMaerke)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resultat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resultat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Easting32)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Easting32)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Northing32)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Northing32)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AmbientId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
