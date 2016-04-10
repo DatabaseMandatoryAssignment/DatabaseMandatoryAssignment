@@ -173,7 +173,6 @@ namespace MandatoryAssignment2.Controllers
         {
             try
             {
-
                 weeklyViewModel.MondayDate = GetDateByWeek(weekNumber, 0).ToString("yyyy-MM-dd");
                 weeklyViewModel.TuesdayDate = GetDateByWeek(weekNumber, 1).ToString("yyyy-MM-dd");
                 weeklyViewModel.WednesdayDate = GetDateByWeek(weekNumber, 2).ToString("yyyy-MM-dd");

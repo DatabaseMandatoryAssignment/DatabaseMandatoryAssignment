@@ -14,12 +14,12 @@ namespace MandatoryAssignment2.Controllers
     [Authorize(Roles = "Administrator")]
     public class AmbientsController : Controller
     {
-        private DataContextTable db = new DataContextTable();
+        private readonly DataContextTable _db = new DataContextTable();
 
         // GET: Ambients
         public async Task<ActionResult> Index()
         {
-            var ambient = db.Ambient.Include(a => a.Enhed).Include(a => a.Maalested).Include(a => a.Opstilling).Include(a => a.Stof).Include(a => a.Udstyr);
+            var ambient = _db.Ambient.Include(a => a.Enhed).Include(a => a.Maalested).Include(a => a.Opstilling).Include(a => a.Stof).Include(a => a.Udstyr);
             return View(await ambient.Take(10000).ToListAsync());
         }
 
@@ -30,7 +30,7 @@ namespace MandatoryAssignment2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ambient ambient = await db.Ambient.FindAsync(id);
+            Ambient ambient = await _db.Ambient.FindAsync(id);
             if (ambient == null)
             {
                 return HttpNotFound();
@@ -41,11 +41,11 @@ namespace MandatoryAssignment2.Controllers
         // GET: Ambients/Create
         public ActionResult Create()
         {
-            ViewBag.EnhedId = new SelectList(db.Enhed, "EnhedId", "EnhedNavn");
-            ViewBag.MaaleStedId = new SelectList(db.Maalested, "MaalestedId", "Maalested1");
-            ViewBag.OpstillingId = new SelectList(db.Opstilling, "OpstillingId", "OpstillingNavn");
-            ViewBag.StofId = new SelectList(db.Stof, "StofId", "StofNavn");
-            ViewBag.UdstyrId = new SelectList(db.Udstyr, "UdstyrId", "UdstyrNavn");
+            ViewBag.EnhedId = new SelectList(_db.Enhed, "EnhedId", "EnhedNavn");
+            ViewBag.MaaleStedId = new SelectList(_db.Maalested, "MaalestedId", "Maalested1");
+            ViewBag.OpstillingId = new SelectList(_db.Opstilling, "OpstillingId", "OpstillingNavn");
+            ViewBag.StofId = new SelectList(_db.Stof, "StofId", "StofNavn");
+            ViewBag.UdstyrId = new SelectList(_db.Udstyr, "UdstyrId", "UdstyrNavn");
             return View();
         }
 
@@ -58,16 +58,16 @@ namespace MandatoryAssignment2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Ambient.Add(ambient);
-                await db.SaveChangesAsync();
+                _db.Ambient.Add(ambient);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EnhedId = new SelectList(db.Enhed, "EnhedId", "EnhedNavn", ambient.EnhedId);
-            ViewBag.MaaleStedId = new SelectList(db.Maalested, "MaalestedId", "Maalested1", ambient.MaaleStedId);
-            ViewBag.OpstillingId = new SelectList(db.Opstilling, "OpstillingId", "OpstillingNavn", ambient.OpstillingId);
-            ViewBag.StofId = new SelectList(db.Stof, "StofId", "StofNavn", ambient.StofId);
-            ViewBag.UdstyrId = new SelectList(db.Udstyr, "UdstyrId", "UdstyrNavn", ambient.UdstyrId);
+            ViewBag.EnhedId = new SelectList(_db.Enhed, "EnhedId", "EnhedNavn", ambient.EnhedId);
+            ViewBag.MaaleStedId = new SelectList(_db.Maalested, "MaalestedId", "Maalested1", ambient.MaaleStedId);
+            ViewBag.OpstillingId = new SelectList(_db.Opstilling, "OpstillingId", "OpstillingNavn", ambient.OpstillingId);
+            ViewBag.StofId = new SelectList(_db.Stof, "StofId", "StofNavn", ambient.StofId);
+            ViewBag.UdstyrId = new SelectList(_db.Udstyr, "UdstyrId", "UdstyrNavn", ambient.UdstyrId);
             return View(ambient);
         }
 
@@ -78,16 +78,16 @@ namespace MandatoryAssignment2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ambient ambient = await db.Ambient.FindAsync(id);
+            Ambient ambient = await _db.Ambient.FindAsync(id);
             if (ambient == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EnhedId = new SelectList(db.Enhed, "EnhedId", "EnhedNavn", ambient.EnhedId);
-            ViewBag.MaaleStedId = new SelectList(db.Maalested, "MaalestedId", "Maalested1", ambient.MaaleStedId);
-            ViewBag.OpstillingId = new SelectList(db.Opstilling, "OpstillingId", "OpstillingNavn", ambient.OpstillingId);
-            ViewBag.StofId = new SelectList(db.Stof, "StofId", "StofNavn", ambient.StofId);
-            ViewBag.UdstyrId = new SelectList(db.Udstyr, "UdstyrId", "UdstyrNavn", ambient.UdstyrId);
+            ViewBag.EnhedId = new SelectList(_db.Enhed, "EnhedId", "EnhedNavn", ambient.EnhedId);
+            ViewBag.MaaleStedId = new SelectList(_db.Maalested, "MaalestedId", "Maalested1", ambient.MaaleStedId);
+            ViewBag.OpstillingId = new SelectList(_db.Opstilling, "OpstillingId", "OpstillingNavn", ambient.OpstillingId);
+            ViewBag.StofId = new SelectList(_db.Stof, "StofId", "StofNavn", ambient.StofId);
+            ViewBag.UdstyrId = new SelectList(_db.Udstyr, "UdstyrId", "UdstyrNavn", ambient.UdstyrId);
             return View(ambient);
         }
 
@@ -100,15 +100,15 @@ namespace MandatoryAssignment2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ambient).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(ambient).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.EnhedId = new SelectList(db.Enhed, "EnhedId", "EnhedNavn", ambient.EnhedId);
-            ViewBag.MaaleStedId = new SelectList(db.Maalested, "MaalestedId", "Maalested1", ambient.MaaleStedId);
-            ViewBag.OpstillingId = new SelectList(db.Opstilling, "OpstillingId", "OpstillingNavn", ambient.OpstillingId);
-            ViewBag.StofId = new SelectList(db.Stof, "StofId", "StofNavn", ambient.StofId);
-            ViewBag.UdstyrId = new SelectList(db.Udstyr, "UdstyrId", "UdstyrNavn", ambient.UdstyrId);
+            ViewBag.EnhedId = new SelectList(_db.Enhed, "EnhedId", "EnhedNavn", ambient.EnhedId);
+            ViewBag.MaaleStedId = new SelectList(_db.Maalested, "MaalestedId", "Maalested1", ambient.MaaleStedId);
+            ViewBag.OpstillingId = new SelectList(_db.Opstilling, "OpstillingId", "OpstillingNavn", ambient.OpstillingId);
+            ViewBag.StofId = new SelectList(_db.Stof, "StofId", "StofNavn", ambient.StofId);
+            ViewBag.UdstyrId = new SelectList(_db.Udstyr, "UdstyrId", "UdstyrNavn", ambient.UdstyrId);
             return View(ambient);
         }
 
@@ -119,7 +119,7 @@ namespace MandatoryAssignment2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ambient ambient = await db.Ambient.FindAsync(id);
+            Ambient ambient = await _db.Ambient.FindAsync(id);
             if (ambient == null)
             {
                 return HttpNotFound();
@@ -132,9 +132,9 @@ namespace MandatoryAssignment2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Ambient ambient = await db.Ambient.FindAsync(id);
-            db.Ambient.Remove(ambient);
-            await db.SaveChangesAsync();
+            Ambient ambient = await _db.Ambient.FindAsync(id);
+            _db.Ambient.Remove(ambient);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -142,7 +142,7 @@ namespace MandatoryAssignment2.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
