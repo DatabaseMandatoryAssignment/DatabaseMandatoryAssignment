@@ -18,7 +18,7 @@
                 @Html.DropDownList("maalested", new SelectList(ViewBag.Maalested, "Maalested"), "Select all", new { @class = "form-control" })
             </div>
             <div class="form-group">
-                @Html.TextBox("date", (string)ViewBag.Date, new { @class = "form-control", @placeholder = "Date" })
+                @Html.TextBox("date", (string) ViewBag.Date, new {@class = "form-control", @placeholder = "Date", @id = "datepicker"})
             </div>
             <div class="form-group">
                 <input class="btn btn-primary btn-block" type="submit" value="Show selected">
@@ -29,7 +29,10 @@
 @section Scripts
 {
     <script type="text/javascript">
-        $(function() {
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
             setInterval(function () {
                 $('#chart').load('Hourly/_LineChart').show();
             },

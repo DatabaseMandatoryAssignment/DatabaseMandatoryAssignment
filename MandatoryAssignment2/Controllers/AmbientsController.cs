@@ -11,7 +11,7 @@ using MandatoryAssignment2.Models;
 
 namespace MandatoryAssignment2.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AmbientsController : Controller
     {
         private DataContextTable db = new DataContextTable();
