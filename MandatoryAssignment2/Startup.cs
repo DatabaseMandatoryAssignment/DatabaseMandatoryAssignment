@@ -23,8 +23,8 @@ namespace MandatoryAssignment2
                 roleManager.Create(role);
 
                 var user = new ApplicationUser();
-                user.UserName = "syedshanumcain@gmail.com";
-                user.Email = "syedshanumcain@gmail.com";
+                user.UserName = "daniel100";
+                user.Email = "danielwinther@hotmail.dk";
 
                 string userPWD = "Secret12!";
 
@@ -32,7 +32,6 @@ namespace MandatoryAssignment2
                 if (chkUser.Succeeded)
                 {
                     var result1 = userManager.AddToRole(user.Id, "Administrator");
-
                 }
             }
             if (!roleManager.RoleExists("User"))
