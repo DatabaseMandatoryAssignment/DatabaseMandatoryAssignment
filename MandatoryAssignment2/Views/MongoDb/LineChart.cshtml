@@ -1,0 +1,36 @@
+﻿@model MandatoryAssignment2.Models.MongoDbYearlyViewModel
+@{
+    ViewBag.Title = "MongoDb - Yearly | Line chart";
+}
+@Html.Partial("_StatMenu")
+<div class="row">
+    <div class="col-md-10" id="chart">
+        @Html.Partial("_LineChart")
+    </div>
+    <div class="btn-group-vertical col-md-2" role="group">
+        @Html.Partial("_ChartMenu")
+        @using (Html.BeginForm("LineChart", "MongoDb"))
+        {
+            <div class="form-group">
+                @Html.DropDownList("stofNavn", new SelectList(ViewBag.Stof, "StofNavn"), "Select all", new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.DropDownList("maalested", new SelectList(ViewBag.Maalested, "Maalested"), "Select all", new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary btn-block" type="submit" value="Show selected">
+            </div>
+        }
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            setInterval(function () {
+                $('#chart').load('MongoDb/_LineChart').show();
+            },
+            30000);
+        });
+    </script>
+}

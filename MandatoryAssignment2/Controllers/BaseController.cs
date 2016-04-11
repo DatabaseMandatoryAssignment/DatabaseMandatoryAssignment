@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Web.Mvc;
 using MandatoryAssignment2.Models;
+using MongoDB.Driver;
+using SendGrid;
 
 namespace MandatoryAssignment2.Controllers
 {
@@ -9,6 +11,8 @@ namespace MandatoryAssignment2.Controllers
     {
         protected readonly DataContextTable DataContextTable = new DataContextTable();
         protected readonly DataContextView DataContextView = new DataContextView();
+        protected static MongoClient Client = new MongoClient();
+        protected static IMongoDatabase Db = Client.GetDatabase("DatabaseMandatoryDatabase");
 
         protected const string Message = "MESSAGE";
         protected const string Notice = "NOTICE";
