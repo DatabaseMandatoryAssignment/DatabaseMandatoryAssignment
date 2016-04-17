@@ -45,7 +45,6 @@ namespace XmlExport
                         Easting32 = Convert.ToInt32(item.SelectSingleNode("Easting_32").InnerText),
                         Northing32 = Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)
                     });
-                    dataContext.SaveChanges();
 
                     /*var bsonDocument = new BsonDocument
                             {
@@ -67,6 +66,7 @@ namespace XmlExport
                     });
                     dataContext.SaveChanges();*/
                 }
+                dataContext.SaveChanges();
             }
             stopwatch.Stop();
             Console.WriteLine("--- Done! --- (" + stopwatch.Elapsed.ToString("g") + ")");
