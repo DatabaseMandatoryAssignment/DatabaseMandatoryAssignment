@@ -1,0 +1,188 @@
+﻿@using System.Globalization
+@{
+    ViewBag.Title = "Google Maps";
+}
+<style>
+    #map {
+        margin: 0 auto;
+        height: 800px;
+    }
+</style>
+<h1>Google Map view</h1>
+
+<div id="map"></div>
+@section Scripts
+{
+    <script type="text/javascript">
+        function initMap() {
+            var locations = [
+                //['Odense Gade, Skur 5, Odense Albanigade', 55.403756, 10.402370, 12],
+                ['H. C. Andersen Boulevard', 55.675014, 12.569400, 11],
+                ['Jagtvej, Skur', 55.700034, 12.556397, 10],
+                ['Anholt, Radar station', 56.711996, 11.554702, 9],
+                ['Føllesbjerg', 54.746639, 10.716248, 8],
+                ['Odense Gade, Skur 5, Odense Albanigade', 55.403756, 10.402370, 7],
+                ['Århus gade (3)', 55.706132, 12.578654, 6],
+                ['H.C. Ørsted Inst.', 55.700085, 12.560388, 5],
+                ['Odense Tag (2)', 55.503756, 10.402370, 4],
+                ['Aalborg Tag ny', 57.048820, 9.921747, 3],
+                ['Ulborg', 56.273653, 8.318263, 2],
+                ['Risø', 55.700000, 12.100000, 1],
+                ['Aarhus Botanisk', 56.162132, 10.189294, 0]
+            ];
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: new google.maps.LatLng(56, 11)
+            });
+
+
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[0][1], locations[0][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker, 'click', (function (marker) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[0].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker);
+                }
+            })(marker));
+
+            var marker1 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[1][1], locations[1][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker1, 'click', (function (marker1) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[1].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker1);
+                }
+            })(marker1));
+
+            var marker2 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[2][1], locations[2][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker2, 'click', (function (marker2) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[2].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker2);
+                }
+            })(marker2));
+
+            var marker3 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[3][1], locations[3][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker3, 'click', (function (marker3) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[3].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker3);
+                }
+            })(marker3));
+
+            var marker4 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[4][1], locations[4][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker4, 'click', (function (marker4) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[4].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker4);
+                }
+            })(marker4));
+
+            var marker5 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[5][1], locations[5][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker5, 'click', (function (marker5) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[5].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker5);
+                }
+            })(marker5));
+
+            var marker6 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[6][1], locations[6][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker6, 'click', (function (marker6) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[6].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker6);
+                }
+            })(marker6));
+
+            var marker7 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[7][1], locations[7][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker7, 'click', (function (marker7) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[7].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker7);
+                }
+            })(marker7));
+
+            var marker8 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[8][1], locations[8][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker8, 'click', (function (marker8) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[8].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker8);
+                }
+            })(marker8));
+
+            var marker9 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[9][1], locations[9][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker9, 'click', (function (marker9) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[9].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker9);
+                }
+            })(marker9));
+
+            var marker10 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[10][1], locations[10][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker10, 'click', (function (marker10) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[10].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker10);
+                }
+            })(marker10));
+
+            var marker11 = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[11][1], locations[11][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker11, 'click', (function (marker11) {
+                return function () {
+                    var infowindow = new google.maps.InfoWindow();
+                    infowindow.setContent("Resultat - " + @Model[11].ToString(new CultureInfo("en-US")));
+                    infowindow.open(map, marker11);
+                }
+            })(marker11));
+
+
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLd0hvMkpYJ2ZbCBFhzgABS_JcvS17tlg&callback=initMap"></script>
+}

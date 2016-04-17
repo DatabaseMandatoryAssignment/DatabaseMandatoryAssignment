@@ -211,6 +211,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HourlyController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MongoDbController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Maalested.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MapViewModel.cs" />
     <Compile Include="Models\MongoDbAmbient.cs" />
     <Compile Include="Models\MongoDbYearlyViewModel.cs" />
     <Compile Include="Models\Opstilling.cs" />
@@ -361,6 +363,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
+    <None Include="Views\Map\Index.cshtml" />
     <None Include="Views\MongoDb\LineChart.cshtml" />
     <Content Include="Views\MongoDb\_LineChart.cshtml" />
   </ItemGroup>
