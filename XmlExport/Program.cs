@@ -20,7 +20,7 @@ namespace XmlExport
 
             XmlDocument document = new XmlDocument();
             // //OpstillingId[not(. = following::OpstillingId/.)]
-            const string path = @"C:\Users\SanneWinther\Desktop\akademi\Data\";
+            const string path = @"C:\Users\Daniel\Desktop\Akademi\Data\";
             document.Load(path + "Ambient.xml");
             XmlNode root = document.DocumentElement;
             XmlNodeList nodes = root.SelectNodes("//Data");
@@ -28,31 +28,46 @@ namespace XmlExport
             Console.WriteLine("--- Start! --- (" + stopwatch.Elapsed.ToString("g") + ")");
             stopwatch.Start();
 
-            /*using (DataContextTable dataContext = new DataContextTable())
-            {*/
-            foreach (XmlNode item in nodes)
+            using (DataContextTable dataContext = new DataContextTable())
             {
-                var bsonDocument = new BsonDocument
-                        {
-                            {"DatoMaerke", Convert.ToDateTime(item.SelectSingleNode("DatoMaerke").InnerText)},
-                            {"MaaleSted", item.SelectSingleNode("Maalested").InnerText},
-                            {"Opstilling", item.SelectSingleNode("OpstillingNavn").InnerText},
-                            {"Stof", item.SelectSingleNode("StofNavn").InnerText},
-                            {"Resultat", Convert.ToDouble(item.SelectSingleNode("Resultat")?.InnerText, System.Globalization.CultureInfo.InvariantCulture)},
-                            {"Enhed", item.SelectSingleNode("EnhedNavn").InnerText},
-                            {"Udstyr", item.SelectSingleNode("UdstyrNavn").InnerText},
-                            {"Easting32", Convert.ToInt32(item.SelectSingleNode("Easting_32").InnerText)},
-                            {"Northing32", Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)},
-                        };
-                ambient.InsertOne(bsonDocument);
-
-                /*dataContext.Ambient.Add(new Ambient()
+                foreach (XmlNode item in nodes)
                 {
-                    Northing32 = Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)
-                });
-                dataContext.SaveChanges();*/
+
+                    dataContext.Ambient.Add(new Ambient()
+                    {
+                        DatoMaerke = Convert.ToDateTime(item.SelectSingleNode("DatoMaerke").InnerText),
+                        MaaleStedId = Convert.ToInt32(item.SelectSingleNode("MaaleStedId").InnerText),
+                        OpstillingId = Convert.ToInt32(item.SelectSingleNode("OpstillingId").InnerText),
+                        StofId = Convert.ToInt32(item.SelectSingleNode("StofId").InnerText),
+                        Resultat = Convert.ToDouble(item.SelectSingleNode("Resultat")?.InnerText.Replace(".", ",")),
+                        EnhedId = Convert.ToInt32(item.SelectSingleNode("EnhedId").InnerText),
+                        UdstyrId = Convert.ToInt32(item.SelectSingleNode("UdstyrId").InnerText),
+                        Easting32 = Convert.ToInt32(item.SelectSingleNode("Easting_32").InnerText),
+                        Northing32 = Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)
+                    });
+                    dataContext.SaveChanges();
+
+                    /*var bsonDocument = new BsonDocument
+                            {
+                                {"DatoMaerke", Convert.ToDateTime(item.SelectSingleNode("DatoMaerke").InnerText)},
+                                {"MaaleSted", item.SelectSingleNode("Maalested").InnerText},
+                                {"Opstilling", item.SelectSingleNode("OpstillingNavn").InnerText},
+                                {"Stof", item.SelectSingleNode("StofNavn").InnerText},
+                                {"Resultat", Convert.ToDouble(item.SelectSingleNode("Resultat")?.InnerText, System.Globalization.CultureInfo.InvariantCulture)},
+                                {"Enhed", item.SelectSingleNode("EnhedNavn").InnerText},
+                                {"Udstyr", item.SelectSingleNode("UdstyrNavn").InnerText},
+                                {"Easting32", Convert.ToInt32(item.SelectSingleNode("Easting_32").InnerText)},
+                                {"Northing32", Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)},
+                            };
+                    ambient.InsertOne(bsonDocument);/*
+
+                    /*dataContext.Ambient.Add(new Ambient()
+                    {
+                        Northing32 = Convert.ToInt32(item.SelectSingleNode("Northing_32").InnerText)
+                    });
+                    dataContext.SaveChanges();*/
+                }
             }
-            /*}*/
             stopwatch.Stop();
             Console.WriteLine("--- Done! --- (" + stopwatch.Elapsed.ToString("g") + ")");
             Console.Read();

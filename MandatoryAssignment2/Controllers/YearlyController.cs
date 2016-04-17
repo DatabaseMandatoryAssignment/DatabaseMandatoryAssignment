@@ -84,6 +84,11 @@ namespace MandatoryAssignment2.Controllers
             {
                 Log("Could not set ViewBag!", Error);
             }
+
+            ViewBag.Stof = from s in DataContextTable.Stof select s.StofNavn;
+            ViewBag.Maalested = from m in DataContextTable.Maalested select m.Maalested1;
+
+
         }
         private double? GetMonthsAverage(int month, string stofnavn, string maalested)
         {
@@ -106,9 +111,9 @@ namespace MandatoryAssignment2.Controllers
             }
             catch (Exception)
             {
-               Log("Could not calculate average!", Error);
+                Log("Could not calculate average!", Error);
+                return (from a in DataContextView.AmbientView where a.DatoMaerke.Month == month select a.Resultat).Average() ?? 0;
             }
-            return null;
         }
         private void SetMonths(YearlyViewModel yearlyViewModel, string stofnavn = null, string maalested = null)
         {
