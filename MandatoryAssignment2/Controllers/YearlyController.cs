@@ -85,10 +85,6 @@ namespace MandatoryAssignment2.Controllers
                 Log("Could not set ViewBag!", Error);
             }
 
-            ViewBag.Stof = from s in DataContextTable.Stof select s.StofNavn;
-            ViewBag.Maalested = from m in DataContextTable.Maalested select m.Maalested1;
-
-
         }
         private double? GetMonthsAverage(int month, string stofnavn, string maalested)
         {
