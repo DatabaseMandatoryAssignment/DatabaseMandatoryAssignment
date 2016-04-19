@@ -84,13 +84,11 @@ namespace MandatoryAssignment2.Controllers
             {
                 Log("Could not set ViewBag!", Error);
             }
-
         }
         private double? GetMonthsAverage(int month, string stofnavn, string maalested)
         {
             try
             {
-
                 if (string.IsNullOrEmpty(stofnavn) && string.IsNullOrEmpty(maalested))
                 {
                     return (from a in DataContextView.AmbientView where a.DatoMaerke.Month == month select a.Resultat).Average() ?? 0;

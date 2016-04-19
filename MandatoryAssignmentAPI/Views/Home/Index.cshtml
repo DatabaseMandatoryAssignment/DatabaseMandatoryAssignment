@@ -1,0 +1,101 @@
+﻿@using System.Globalization
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div id="graph"></div>
+</div>
+
+@section Scripts
+{
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $http) {
+            $http.get("/api/Values/GetMonthsAverage/1")
+                .then(function (response) {
+                    $scope.january = response.data;
+
+                    $http.get("/api/Values/GetMonthsAverage/2")
+                    .then(function (response) {
+                        $scope.february = response.data;
+
+                        $http.get("/api/Values/GetMonthsAverage/3")
+                        .then(function (response) {
+                            $scope.march = response.data;
+
+                            $http.get("/api/Values/GetMonthsAverage/4")
+                            .then(function (response) {
+                                $scope.april = response.data;
+
+                                $http.get("/api/Values/GetMonthsAverage/5")
+                                .then(function (response) {
+                                    $scope.may = response.data;
+
+                                    $http.get("/api/Values/GetMonthsAverage/6")
+                                    .then(function (response) {
+                                        $scope.june = response.data;
+
+                                        $http.get("/api/Values/GetMonthsAverage/7")
+                                        .then(function (response) {
+                                            $scope.july = response.data;
+
+                                            $http.get("/api/Values/GetMonthsAverage/8")
+                                            .then(function (response) {
+                                                $scope.august = response.data;
+
+                                                $http.get("/api/Values/GetMonthsAverage/9")
+                                                .then(function (response) {
+                                                    $scope.september = response.data;
+
+                                                    $http.get("/api/Values/GetMonthsAverage/10")
+                                                    .then(function (response) {
+                                                        $scope.october = response.data;
+
+                                                        $http.get("/api/Values/GetMonthsAverage/11")
+                                                        .then(function (response) {
+                                                            $scope.november = response.data;
+
+                                                            $http.get("/api/Values/GetMonthsAverage/12")
+                                                            .then(function (response) {
+                                                                $scope.december = response.data;
+
+                                                                new Morris.Line({
+                                                                    element: 'graph',
+                                                                    data: [
+                                                                        { month: '2015-01', value: $scope.january },
+                                                                        { month: '2015-02', value: $scope.february },
+                                                                        { month: '2015-03', value: $scope.march },
+                                                                        { month: '2015-04', value: $scope.april },
+                                                                        { month: '2015-05', value: $scope.may },
+                                                                        { month: '2015-06', value: $scope.june },
+                                                                        { month: '2015-07', value: $scope.july },
+                                                                        { month: '2015-08', value: $scope.august },
+                                                                        { month: '2015-09', value: $scope.september },
+                                                                        { month: '2015-10', value: $scope.october },
+                                                                        { month: '2015-11', value: $scope.november },
+                                                                        { month: '2015-12', value: $scope.december },
+                                                                    ],
+                                                                    xLabels: 'month',
+                                                                    ymin: 'auto',
+                                                                    xkey: 'month',
+                                                                    ykeys: ['value'],
+                                                                    labels: ['Average'],
+                                                                    xLabelAngle: 45,
+                                                                    pointFillColors: ['#f0ad4e'],
+                                                                    pointSize: 5,
+                                                                    hideHover: 'auto',
+                                                                    resize: true
+                                                                });
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+
+                        });
+                    });
+                });
+        });
+    </script>
+}

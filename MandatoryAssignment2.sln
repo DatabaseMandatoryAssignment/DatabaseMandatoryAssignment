@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MandatoryAssignment2", "Man
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlExport", "XmlExport\XmlExport.csproj", "{59772058-B1CD-40CB-A844-A9D25F88D373}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MandatoryAssignmentAPI", "MandatoryAssignmentAPI\MandatoryAssignmentAPI.csproj", "{7DD01BFE-CE22-42FA-BA26-B589CF90C164}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{59772058-B1CD-40CB-A844-A9D25F88D373}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59772058-B1CD-40CB-A844-A9D25F88D373}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59772058-B1CD-40CB-A844-A9D25F88D373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD01BFE-CE22-42FA-BA26-B589CF90C164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD01BFE-CE22-42FA-BA26-B589CF90C164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD01BFE-CE22-42FA-BA26-B589CF90C164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD01BFE-CE22-42FA-BA26-B589CF90C164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
